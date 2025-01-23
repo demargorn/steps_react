@@ -1,0 +1,30 @@
+.result {
+   display: flex;
+   padding-top: 10px;
+   gap: 100px;
+}
+
+.date,
+.length {
+   font-size: 16px;
+   font-weight: 400;
+   margin-left: 20px;
+}
+
+.btn-edit {
+   width: 25px;
+   height: 25px;
+   border: none;
+   background-color: white;
+   background-image: url('/public/edit-icon.svg');
+   cursor: pointer;
+}
+
+.btn-delete {
+   width: 25px;
+   height: 25px;
+   border: none;
+   background-color: white;
+   background-image: url('/public/delete-icon.svg');
+   cursor: pointer;
+}
