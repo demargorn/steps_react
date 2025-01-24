@@ -1,14 +1,21 @@
 .result {
    display: flex;
    padding-top: 10px;
-   gap: 100px;
+   gap: 90px;
 }
 
 .date,
 .length {
    font-size: 16px;
    font-weight: 400;
-   margin-left: 20px;
+   margin-left: 35px;
+}
+
+.btn-group {
+   display: flex;
+   justify-content: center;
+   margin-left: auto;
+   margin-right: 35px;
 }
 
 .btn-edit {

@@ -4,12 +4,18 @@
    box-sizing: border-box;
 }
 
+.app {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}
+
 .form-container {
    display: flex;
    justify-content: center;
    align-items: flex-end;
    margin-top: 30px;
-   max-width: 600px
+   min-width: 400px;
 }
 
 .title-container {
@@ -18,12 +24,10 @@
    gap: 40px;
 }
 
-.results-container {  
-   margin: 0 auto;
-   max-width: 430px;
+.results-container {
+   min-width: 440px;
    min-height: 100px;
    height: 100%;
    border: 1px solid black;
    border-radius: 10px;
-
 }

@@ -4,18 +4,37 @@ import Title from './Title/Title';
 import Result from './Result/Result';
 import styles from './App.module.css';
 
-const App = () => {
-   const [date, setDate] = useState('');
-   const [length, setLength] = useState('');
-   // const dataArray = [];
+let maxId = 100;
 
-   const handleSetDate = (value) => setDate(value);
-   const handleSetLength = (value) => setLength(value);
+const App = () => {
+   const [resultData, setResultData] = useState([]);
+
+   function createResult(date, length) {
+      return {
+         date: date,
+         length: length,
+         id: maxId++,
+      };
+   }
+
+   const addResult = ({ date, length }) => {
+      const newResult = createResult(date, length);
+      return setResultData([...resultData, newResult]);
+   };
+
+   const deleteResult = (id) => {
+      const idx = resultData.findIndex((item) => item.id === id);
+      return setResultData([...resultData.slice(0, idx), ...resultData.slice(idx + 1)]);
+   };
+
+   function sortedResults(items) {
+      return items.sort((a, b) => a.date < b.date);
+   }
 
    return (
-      <>
+      <div className={styles['app']}>
          <div className={styles['form-container']}>
-            <Form onHandleSetDate={handleSetDate} onHandleSetLength={handleSetLength} />
+            <Form onAdded={addResult} />
          </div>
          <div className={styles['title-container']}>
             <Title title='Дата (ДД.ММ.ГГГГ)' />
@@ -23,9 +42,9 @@ const App = () => {
             <Title title='Действия' />
          </div>
          <div className={styles['results-container']}>
-            <Result date={date} length={length} />
+            <Result results={sortedResults(resultData)} onDelete={deleteResult} />
          </div>
-      </>
+      </div>
    );
 };
 

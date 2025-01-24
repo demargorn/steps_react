@@ -1,15 +1,38 @@
+import { useState } from 'react';
 import styles from './Form.module.css';
 
-const Form = ({ onHandleSetDate, onHandleSetLength }) => {
+const Form = ({ onAdded }) => {
+   const [formData, setFormData] = useState({
+      date: '',
+      length: '',
+   });
+
+   const handleInputChange = (e) => {
+      const { name, value } = e.target;
+      setFormData({
+         ...formData,
+         [name]: value,
+      });
+   };
+
+   const onSubmit = (e) => {
+      e.preventDefault();
+      onAdded(formData);
+      setFormData({
+         ...formData,
+         value: '',
+      });
+   };
+
    return (
-      <form className={styles['form-container']}>
+      <form className={styles['form-container']} onSubmit={onSubmit}>
          <div className={styles['date-input']}>
             <label htmlFor='date'>Дата (ДД.ММ.ГГГГ)</label>
             <input
                type='text'
                id='date'
                name='date'
-               onChange={(e) => onHandleSetDate(e.target.value)}
+               onChange={handleInputChange}
                className={styles['input']}
             />
          </div>
@@ -19,7 +42,7 @@ const Form = ({ onHandleSetDate, onHandleSetLength }) => {
                type='text'
                id='length'
                name='length'
-               onChange={(e) => onHandleSetLength(e.target.value)}
+               onChange={handleInputChange}
                className={styles['input']}
             />
          </div>
