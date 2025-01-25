@@ -27,9 +27,9 @@ const App = () => {
       return setResultData([...resultData.slice(0, idx), ...resultData.slice(idx + 1)]);
    };
 
-   function sortedResults(items) {
-      return items.sort((a, b) => a.date < b.date);
-   }
+   const editResult = (id) => {
+      deleteResult(id);
+   };
 
    return (
       <div className={styles['app']}>
@@ -42,7 +42,7 @@ const App = () => {
             <Title title='Действия' />
          </div>
          <div className={styles['results-container']}>
-            <Result results={sortedResults(resultData)} onDelete={deleteResult} />
+            <Result results={resultData} onEdit={editResult} onDelete={deleteResult} />
          </div>
       </div>
    );

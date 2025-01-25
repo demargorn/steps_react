@@ -1,23 +1,26 @@
-import styles from './Result.module.css';
+import PropTypes from 'prop-types';
+import ResultRow from '../ResultRow/ResultRow';
 
-const Result = ({ results, onDelete }) => {
-   return results.map((res) => {
-      const { id, ...resProps } = res;
-      return <ResultRow key={id} {...resProps} onDelete={() => onDelete(id)} />;
-   });
+Result.propTypes = {
+   results: PropTypes.array.isRequired,
+   onEdit: PropTypes.func.isRequired,
+   onDelete: PropTypes.func.isRequired,
 };
 
-function ResultRow({ date, length, onDelete }) {
-   return (
-      <div className={styles['result']}>
-         <span className={styles['date']}>{date}</span>
-         <span className={styles['length']}>{length}</span>
-         <div className={styles['btn-group']}>
-            <button className={styles['btn-edit']}></button>
-            <button className={styles['btn-delete']} onClick={onDelete}></button>
-         </div>
-      </div>
-   );
+function Result({ results, onEdit, onDelete }) {
+   return results
+      .sort((a, b) => b.id - a.id)
+      .map((res) => {
+         const { id, ...resProps } = res;
+         return (
+            <ResultRow
+               key={id}
+               {...resProps}
+               onEdit={() => onEdit(id)}
+               onDelete={() => onDelete(id)}
+            />
+         );
+      });
 }
 
 export default Result;

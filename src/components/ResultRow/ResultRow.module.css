@@ -1,6 +1,7 @@
 .result {
    display: flex;
-   padding-top: 10px;
+   align-items: center;
+   margin-block: 10px;
    gap: 90px;
 }
 
