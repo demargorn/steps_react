@@ -8,15 +8,15 @@ Form.propTypes = {
 
 function Form({ onAdded }) {
    const [formData, setFormData] = useState({
-      date: new Date().toLocaleString('ru-RU').slice(0, 10),
-      length: '0',
+      date: '',
+      length: '',
    });
 
    const handleInputChange = (e) => {
       const { name, value } = e.target;
       setFormData({
          ...formData,
-         [name]: value.trimEnd(),
+         [name]: value,
       });
    };
 
@@ -30,8 +30,6 @@ function Form({ onAdded }) {
       });
    };
 
-   // console.log(new Date().toLocaleString('ru-RU').slice(0, 10));
-
    return (
       <form className={styles['form-container']} onSubmit={handleSubmit}>
          <div className={styles['date-input']}>
@@ -40,6 +38,8 @@ function Form({ onAdded }) {
                type='text'
                id='date'
                name='date'
+               pattern='^\d{2}\.\d{2}\.\d{4}$'
+               title='введите дату в формате дд.мм.гггг'
                value={formData.date}
                onChange={handleInputChange}
                className={styles['input']}
@@ -52,6 +52,8 @@ function Form({ onAdded }) {
                type='text'
                id='length'
                name='length'
+               pattern='^\d{1,}?\.?\d{1,2}$'
+               title='введите пройденное расстояние, например 12 или 0.52'
                value={formData.length}
                onChange={handleInputChange}
                className={styles['input']}
