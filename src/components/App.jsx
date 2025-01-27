@@ -17,19 +17,34 @@ const App = () => {
       };
    }
 
-   const addResult = ({ date, length }) => {
+   function addResult({ date, length }) {
       const newResult = createResult(date, length);
-      return setResultData([...resultData, newResult]);
-   };
+      const idx = resultData.findIndex((res) => res.date === date);
 
-   const deleteResult = (id) => {
-      const idx = resultData.findIndex((item) => item.id === id);
+      if (resultData[idx]) {
+         setResultData([
+            ...resultData.slice(0, idx),
+            {
+               ...resultData[idx],
+               length: Number(resultData[idx].length) + Number(length),
+               id: maxId++,
+            },
+            ...resultData.slice(idx + 1),
+         ]);
+      } else {
+         setResultData([...resultData, newResult]);
+      }
+   }
+
+   function deleteResult(id) {
+      const idx = resultData.findIndex((res) => res.id === id);
       return setResultData([...resultData.slice(0, idx), ...resultData.slice(idx + 1)]);
-   };
+   }
 
-   const editResult = (id) => {
+   // функция пока только удаляет строку
+   function editResult(id) {
       deleteResult(id);
-   };
+   }
 
    return (
       <div className={styles['app']}>

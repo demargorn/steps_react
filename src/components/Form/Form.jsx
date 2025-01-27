@@ -52,8 +52,8 @@ function Form({ onAdded }) {
                type='text'
                id='length'
                name='length'
-               pattern='^\d{1,}?\.?\d{1,2}$'
-               title='введите пройденное расстояние, например 12 или 0.52'
+               pattern='^\d{0,3}\.?\d{1,2}$'
+               title='введите пройденное расстояние, например 2, 10 или 0.52'
                value={formData.length}
                onChange={handleInputChange}
                className={styles['input']}

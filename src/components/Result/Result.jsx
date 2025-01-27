@@ -9,15 +9,15 @@ Result.propTypes = {
 
 function Result({ results, onEdit, onDelete }) {
    return results
-      .sort((a, b) => (b.date > a.date ? 1 : a.date > b.date ? -1 : 0))
+      .toSorted((a, b) => (b.date > a.date ? 1 : a.date > b.date ? -1 : 0))
       .map((res) => {
          const { id, ...resProps } = res;
          return (
             <ResultRow
                key={id}
-               {...resProps}
                onEdit={() => onEdit(id)}
                onDelete={() => onDelete(id)}
+               {...resProps}
             />
          );
       });
