@@ -8,8 +8,8 @@ Form.propTypes = {
 
 function Form({ onAdded }) {
    const [formData, setFormData] = useState({
-      date: '',
-      length: '',
+      date: new Date().toLocaleDateString().slice(0, 10),
+      length: 0,
    });
 
    const handleInputChange = (e) => {
@@ -25,8 +25,8 @@ function Form({ onAdded }) {
       onAdded(formData);
       setFormData({
          ...formData,
-         date: '',
-         length: '',
+         date: new Date().toLocaleDateString().slice(0, 10),
+         length: 0,
       });
    };
 
@@ -59,7 +59,9 @@ function Form({ onAdded }) {
                className={styles['input']}
             />
          </div>
-         <button className={styles['btn']}>ok</button>
+         <button title='нажмите, чтобы сохранить' className={styles['btn']}>
+            ok
+         </button>
       </form>
    );
 }

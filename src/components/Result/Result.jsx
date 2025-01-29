@@ -3,11 +3,10 @@ import ResultRow from '../ResultRow/ResultRow';
 
 Result.propTypes = {
    results: PropTypes.array.isRequired,
-   onEdit: PropTypes.func.isRequired,
    onDelete: PropTypes.func.isRequired,
 };
 
-function Result({ results, onEdit, onDelete }) {
+function Result({ results,  onDelete }) {
    return results
       .toSorted((a, b) => (b.date > a.date ? 1 : a.date > b.date ? -1 : 0))
       .map((res) => {
@@ -15,7 +14,6 @@ function Result({ results, onEdit, onDelete }) {
          return (
             <ResultRow
                key={id}
-               onEdit={() => onEdit(id)}
                onDelete={() => onDelete(id)}
                {...resProps}
             />

@@ -11,9 +11,9 @@ const App = () => {
 
    function createResult(date, length) {
       return {
+         id: maxId++,
          date: date,
          length: length,
-         id: maxId++,
       };
    }
 
@@ -41,11 +41,6 @@ const App = () => {
       return setResultData([...resultData.slice(0, idx), ...resultData.slice(idx + 1)]);
    }
 
-   // функция пока только удаляет строку
-   function editResult(id) {
-      deleteResult(id);
-   }
-
    return (
       <div className={styles['app']}>
          <div className={styles['form-container']}>
@@ -57,7 +52,7 @@ const App = () => {
             <Title title='Действия' />
          </div>
          <div className={styles['results-container']}>
-            <Result results={resultData} onEdit={editResult} onDelete={deleteResult} />
+            <Result results={resultData} onDelete={deleteResult} />
          </div>
       </div>
    );
